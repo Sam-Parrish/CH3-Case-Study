@@ -1,0 +1,36 @@
+﻿body {
+}
+
+.navBarDiv {
+    background-color: dodgerblue;
+    color: white;
+    padding: 0.3em;
+}
+
+h2{
+    margin-right:1em;
+}
+
+a{
+    margin-right:0.5em;
+}
+
+.mainPage {
+    padding-right: 2em;
+    padding-left: 2em;
+}
+
+.nav-link{
+    font-size:larger;
+}
+
+.list-items{
+    border-color:lightgray;
+    border-style:solid;
+}
+
+footer{
+    border-style:solid;
+    border-color:lightgray;
+    padding:0.4em;
+}
