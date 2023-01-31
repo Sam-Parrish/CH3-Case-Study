@@ -1,4 +1,4 @@
-﻿@model List<Products>
+﻿@model List<Product>
 
 @{
 	ViewData["Title"] = "SportsPro :)";
@@ -27,7 +27,7 @@
 							<a class="nav-link  link-light fw-bold active" aria-current="page" href="/Home/">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link link-light fw-bold active" aria-current="page" href="/Products/">Products</a>
+							<a class="nav-link link-light fw-bold active" aria-current="page" href="/Product/">Products</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link link-light fw-bold active" aria-current="page" href="#">Technicians</a>
@@ -55,7 +55,7 @@
 	</div>
 	<br />
 	<div class="mb-2">
-		<a asp-controller="Products" asp-action="Add">Add New Product</a>
+		<a asp-controller="Product" asp-action="Add" class="fw-bold fs-5 ms-2">Add New Product</a>
 	</div>
 	<table class="table table-bordered table-striped">
 		<thead>
@@ -68,16 +68,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var products in Model)
+			@foreach (var product in Model)
 			{
 				<tr>
-					<td>@products.ProductCode</td>
-					<td>@products.Name</td>
-					<td>@products.Price</td>
-					<td>@products.ReleaseDate</td>
+					<td>@product.ProductCode</td>
+					<td>@product.Name</td>
+					<td>@product.Price.ToString("C2")</td>
+					<td>@product.ReleaseDate</td>
 					<td>
-						<a asp-controller="Products" asp-action="Edit" asp-route-id="@products.ProductCode">Edit</a>
-						<a asp-controller="Products" asp-action="Delete" asp-route-id="@products.ProductCode">Delete</a>
+						<a asp-controller="Product" asp-action="Edit" asp-route-id="@product.ProductCode">Edit</a>
+						<a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductCode">Delete</a>
 				</tr>
 			}
 		</tbody>

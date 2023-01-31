@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -16,24 +17,25 @@ namespace CS1.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductCode = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ReleaseDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductCode);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductCode", "Name", "Price", "ReleaseDate" },
+                columns: new[] { "ProductId", "Name", "Price", "ProductCode", "ReleaseDate" },
                 values: new object[,]
                 {
-                    { 1, "Test product", 10m, "12/5/2023" },
-                    { 2, "Test product", 15m, "12/5/2023" }
+                    { 1, "Tournament Master 1.0", 4.99m, "TRN10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "League Scheduler 1.0", 4.99m, "LEAG10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
         }
 

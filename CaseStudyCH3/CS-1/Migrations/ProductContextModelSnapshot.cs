@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CS1.Migrations
 {
-    [DbContext(typeof(ProductsContext))]
-    partial class ProductsContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ProductContext))]
+    partial class ProductContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -22,43 +22,48 @@ namespace CS1.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CS_1.Models.Products", b =>
+            modelBuilder.Entity("CS_1.Models.Product", b =>
                 {
-                    b.Property<int>("ProductCode")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductCode"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Price")
-                        .IsRequired()
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ReleaseDate")
+                    b.Property<string>("ProductCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProductCode");
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ProductId");
 
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
-                            ProductCode = 1,
-                            Name = "Test product",
-                            Price = 10m,
-                            ReleaseDate = "12/5/2023"
+                            ProductId = 1,
+                            Name = "Tournament Master 1.0",
+                            Price = 4.99m,
+                            ProductCode = "TRN10",
+                            ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ProductCode = 2,
-                            Name = "Test product",
-                            Price = 15m,
-                            ReleaseDate = "12/5/2023"
+                            ProductId = 2,
+                            Name = "League Scheduler 1.0",
+                            Price = 4.99m,
+                            ProductCode = "LEAG10",
+                            ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 #pragma warning restore 612, 618
