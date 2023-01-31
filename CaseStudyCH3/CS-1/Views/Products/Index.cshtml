@@ -1,4 +1,4 @@
-﻿@model Products
+﻿@model List<Products>
 
 @{
 	ViewData["Title"] = "SportsPro :)";
@@ -54,6 +54,33 @@
 		</nav>
 	</div>
 	<br />
+	<div class="mb-2">
+		<a asp-controller="Products" asp-action="Add">Add New Product</a>
+	</div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Product Code</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Release Date</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var products in Model)
+			{
+				<tr>
+					<td>@products.ProductCode</td>
+					<td>@products.Name</td>
+					<td>@products.Price</td>
+					<td>@products.ReleaseDate</td>
+					<td><a asp-controller="Products" asp-action="Edit" asp-route-id="@products.ProductCode">Edit</a>
+						<a asp-controller="Products" asp-action="Delete" asp-route-id="@products.ProductCode">Delete</a>
+				</tr>
+			}
+		</tbody>
+	</table>
 </body>
 <footer>&copy;2022 - SportsPro</footer>
 </html>

@@ -6,27 +6,30 @@ namespace CS_1.Controllers
 {
 	public class ProductsController : Controller
 	{
-		private readonly ILogger<ProductsController> _logger;
+		private ProductsContext context { get; set; }
 
-		public ProductsController(ILogger<ProductsController> logger)
+		public ProductsController(ProductsContext ctx) => context = ctx;
+
+		[HttpGet]
+
+		public IActionResult Add()
 		{
-			_logger = logger;
+			ViewBag.Action = "Add";
+			return View("Edit", new Products());
+		}
+
+		public IActionResult Edit(int code)
+		{
+			ViewBag.Action = "Edit";
+			var product = context.Products.Find(code);
+			return View(product);
 		}
 
 		public IActionResult Index()
 		{
-			return View();
-		}
+			var products = context.Products.OrderBy(p => p.Name).ToList();
 
-		public IActionResult Privacy()
-		{
-			return View();
-		}
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new Home { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+			return View(products);
 		}
 	}
 }
