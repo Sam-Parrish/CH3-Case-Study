@@ -26,7 +26,7 @@ namespace CS_1.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new CH3StudyModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new Home { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
