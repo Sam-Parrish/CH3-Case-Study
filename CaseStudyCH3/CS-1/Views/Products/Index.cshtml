@@ -75,7 +75,8 @@
 					<td>@products.Name</td>
 					<td>@products.Price</td>
 					<td>@products.ReleaseDate</td>
-					<td><a asp-controller="Products" asp-action="Edit" asp-route-id="@products.ProductCode">Edit</a>
+					<td>
+						<a asp-controller="Products" asp-action="Edit" asp-route-id="@products.ProductCode">Edit</a>
 						<a asp-controller="Products" asp-action="Delete" asp-route-id="@products.ProductCode">Delete</a>
 				</tr>
 			}
