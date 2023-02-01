@@ -51,7 +51,7 @@ namespace CS_1.Controllers
             }
             else
             {
-                ViewBag.Action = (modifiedProduct.ProductId == 0) ? "Edit " : "Edit ";
+                ViewBag.Action = (modifiedProduct.ProductId == 0) ? "Add " : "Edit ";
                 return View(modifiedProduct);
             }
         }
