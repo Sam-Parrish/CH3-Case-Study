@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS1.Migrations
 {
     [DbContext(typeof(SportsProContext))]
-    [Migration("20230202213116_Customers")]
-    partial class Customers
+    [Migration("20230202220108_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,10 @@ namespace CS1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -41,7 +45,22 @@ namespace CS1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -53,9 +72,14 @@ namespace CS1.Migrations
                         new
                         {
                             CustomerId = 1,
+                            Address = "120 Buddy Boulevard",
                             City = "San Francisco",
                             Email = "kanthoni@pge.com",
-                            Name = "Kaitlyn Anthoni"
+                            FirstName = "Kaitlyn",
+                            LastName = "Anthoni",
+                            Phone = "8005550489",
+                            PostalCode = 9993,
+                            State = "California"
                         });
                 });
 

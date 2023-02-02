@@ -26,7 +26,7 @@ namespace CS_1.Models
                 );
 
             modelBuilder.Entity<Customer>().HasData(
-                new Customer { CustomerId = 1, FirstName = "Kaitlyn", LastName = "Anthoni", Email = "kanthoni@pge.com", City = "San Francisco" }
+                new Customer { CustomerId = 1, FirstName = "Kaitlyn", LastName = "Anthoni", Address = "120 Buddy Boulevard", City = "San Francisco", State = "California", PostalCode = 09993, Email = "kanthoni@pge.com", Phone = "8005550489" }
                 );
 
         }

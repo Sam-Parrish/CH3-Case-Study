@@ -12,7 +12,7 @@ namespace CS_1.Controllers
 
         public IActionResult Index()
         {
-            var customer = Context.Customers.OrderBy(p => p.Name).ToList();
+            var customer = Context.Customers.OrderBy(p => p.FirstName).ToList();
 
             return View(customer);
         }

@@ -49,7 +49,7 @@
     <br />
     <div class="deleteStuff">
         <h2>Confirm Deletion</h2>
-        <h3>@Model.Name</h3>
+        <h3>@Model.FirstName @Model.LastName</h3>
 
         <form asp-controller="Customer" asp-action="Delete" method="post">
             <input type="hidden" asp-for="CustomerId" /><br />
