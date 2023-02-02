@@ -6,9 +6,9 @@ namespace CS_1.Controllers
 {
     public class ProductController : Controller
     {
-        private ProductContext context { get; set; }
+        private SportsProContext context { get; set; }
 
-        public ProductController(ProductContext ctx) => context = ctx;
+        public ProductController(SportsProContext ctx) => context = ctx;
 
         public IActionResult Index()
         {
@@ -25,10 +25,10 @@ namespace CS_1.Controllers
             return View("Edit", new Product());
         }
 
-        public IActionResult Edit(int code)
+        public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit ";
-            var product = context.Products.Find(code);
+            var product = context.Products.Find(id);
             return View(product);
         }
 
@@ -47,7 +47,7 @@ namespace CS_1.Controllers
                     context.Products.Update(modifiedProduct);
                 }
                 context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Product");
             }
             else
             {
@@ -58,10 +58,10 @@ namespace CS_1.Controllers
 
         [HttpGet]
 
-        public IActionResult Delete(int code)
+        public IActionResult Delete(int id)
         {
             ViewBag.Action = "Delete ";
-            var product = context.Products.Find(code);
+            var product = context.Products.Find(id);
 
             return View(product);
         }
@@ -73,7 +73,7 @@ namespace CS_1.Controllers
         {
             context.Products.Remove(product);
             context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Product");
         }
     }
 }

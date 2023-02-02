@@ -1,6 +1,6 @@
-﻿@model Product
+﻿@model Technician
 @{
-    string title = ViewBag.Action + "Product";
+    string title = ViewBag.Action + "Technician";
 
     ViewData["Title"] = title;
     Layout = "_Layout";
@@ -51,24 +51,23 @@
         <form asp-action="Edit" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="mb-3">
-                <label asp-for="ProductCode" class="form-label">Product Code</label><br />
-                <input asp-for="ProductCode" class="form-control" />
-            </div>
-            <div class="mb-3">
                 <label asp-for="Name" class="form-label">Name</label><br />
                 <input asp-for="Name" class="form-control" />
             </div>
             <div class="mb-3">
-                <label asp-for="Price" class="form-label">Price</label><br />
-                <input asp-for="Price" class="form-control" />
+                <label asp-for="Email" class="form-label">Email</label><br />
+                <input asp-for="Email" class="form-control" />
             </div>
-
-            <input type="hidden" asp-for="ProductId" />
+            <div class="mb-3">
+                <label asp-for="PhoneNumber" class="form-label">Phone</label><br />
+                <input asp-for="PhoneNumber" class="form-control" />
+            </div>
+            <input type="hidden" asp-for="TechnicianId" />
 
             <button type="submit" class="btn btn-primary">Save</button>
-            <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Cancel</a>
+            <a asp-controller="Technician" asp-action="Index" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </body>
-<br/>
+<br />
 <footer>&copy;2022 - SportsPro</footer>

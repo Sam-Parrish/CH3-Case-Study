@@ -1,10 +1,18 @@
-﻿@model Product
-@{
-    string title = ViewBag.Action + "Product";
+﻿@model List<Customer>
 
-    ViewData["Title"] = title;
+@{
+    ViewData["Title"] = "SportsPro :)";
     Layout = "_Layout";
 }
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        SportsPro
+    </title>
+</head>
 <body>
     <div class="navBarDiv container-fluid">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -25,7 +33,7 @@
                             <a class="nav-link link-light fw-bold active" aria-current="page" href="/Technician/">Technicians</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-light fw-bold active" aria-current="page" href="/Customer/">Customers</a>
+                            <a class="nav-link link-light fw-bold active" aria-current="page" href="#">Customers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link link-light fw-bold active" aria-current="page" href="#">Incidents</a>
@@ -45,30 +53,34 @@
             </div>
         </nav>
     </div>
-    <div class="editDiv container-fluid">
-        <h2>@ViewBag.Title</h2>
-
-        <form asp-action="Edit" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="mb-3">
-                <label asp-for="ProductCode" class="form-label">Product Code</label><br />
-                <input asp-for="ProductCode" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label asp-for="Name" class="form-label">Name</label><br />
-                <input asp-for="Name" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label asp-for="Price" class="form-label">Price</label><br />
-                <input asp-for="Price" class="form-control" />
-            </div>
-
-            <input type="hidden" asp-for="ProductId" />
-
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Cancel</a>
-        </form>
+    <br />
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.FirstName @customer.LastName</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.City</td>
+                    <td>
+                        <a asp-controller="Customer" asp-action="Edit" asp-route-id="@customer.CustomerId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="Customer" asp-action="Delete" asp-route-id="@customer.CustomerId" class="btn btn-primary">Delete</a>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="mb-2">
+        <a asp-controller="Customer" asp-action="Add" class="fw-bold fs-5 ms-2 btn btn-primary">Add Customer</a>
     </div>
+    <br />
 </body>
-<br/>
 <footer>&copy;2022 - SportsPro</footer>
+</html>

@@ -29,6 +29,21 @@ namespace CS1.Migrations
                     table.PrimaryKey("PK_Products", x => x.ProductId);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Technicians",
+                columns: table => new
+                {
+                    TechnicianId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Technicians", x => x.TechnicianId);
+                });
+
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "ProductId", "Name", "Price", "ProductCode", "ReleaseDate" },
@@ -37,6 +52,11 @@ namespace CS1.Migrations
                     { 1, "Tournament Master 1.0", 4.99m, "TRN10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 2, "League Scheduler 1.0", 4.99m, "LEAG10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Technicians",
+                columns: new[] { "TechnicianId", "Email", "Name", "PhoneNumber" },
+                values: new object[] { 1, "alison@sportsprosoftware.com", "Alison Diaz", "8005550443" });
         }
 
         /// <inheritdoc />
@@ -44,6 +64,9 @@ namespace CS1.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Technicians");
         }
     }
 }

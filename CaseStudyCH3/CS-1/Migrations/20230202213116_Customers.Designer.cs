@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CS1.Migrations
 {
-    [DbContext(typeof(ProductContext))]
-    [Migration("20230201034737_Initial")]
-    partial class Initial
+    [DbContext(typeof(SportsProContext))]
+    [Migration("20230202213116_Customers")]
+    partial class Customers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,40 @@ namespace CS1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CS_1.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerId = 1,
+                            City = "San Francisco",
+                            Email = "kanthoni@pge.com",
+                            Name = "Kaitlyn Anthoni"
+                        });
+                });
 
             modelBuilder.Entity("CS_1.Models.Product", b =>
                 {
@@ -67,6 +101,40 @@ namespace CS1.Migrations
                             Price = 4.99m,
                             ProductCode = "LEAG10",
                             ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("CS_1.Models.Technician", b =>
+                {
+                    b.Property<int>("TechnicianId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TechnicianId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TechnicianId");
+
+                    b.ToTable("Technicians");
+
+                    b.HasData(
+                        new
+                        {
+                            TechnicianId = 1,
+                            Email = "alison@sportsprosoftware.com",
+                            Name = "Alison Diaz",
+                            PhoneNumber = "8005550443"
                         });
                 });
 #pragma warning restore 612, 618
