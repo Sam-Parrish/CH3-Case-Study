@@ -43,3 +43,9 @@ footer{
 .deleteStuff{
     margin-left:1em
 }
+
+.sportsProTitle{
+    border-bottom-style: solid;
+    border-color:dodgerblue;
+    margin-bottom: 1.5em;
+}

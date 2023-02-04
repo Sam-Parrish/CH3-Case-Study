@@ -1,5 +1,6 @@
 ﻿using CS_1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace CS_1.Controllers
@@ -12,7 +13,7 @@ namespace CS_1.Controllers
 
         public IActionResult Index()
         {
-            var customer = Context.Customers.OrderBy(p => p.FirstName).ToList();
+            var customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
 
             return View(customer);
         }
@@ -22,12 +23,14 @@ namespace CS_1.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "Add ";
+            ViewBag.Countries = Context.Countries.OrderBy(c => c.Name).ToList();
             return View("Edit", new Customer());
         }
 
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit ";
+            ViewBag.Countries = Context.Countries.OrderBy(c => c.Name).ToList();
             var customer = Context.Customers.Find(id);
             return View(customer);
         }
@@ -52,6 +55,7 @@ namespace CS_1.Controllers
             else
             {
                 ViewBag.Action = (modifiedCustomer.CustomerId == 0) ? "Add " : "Edit ";
+                ViewBag.Countries = Context.Countries.OrderBy(c => c.Name).ToList();
                 return View(modifiedCustomer);
             }
         }

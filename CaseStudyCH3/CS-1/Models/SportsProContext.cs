@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.Xml;
+
 namespace CS_1.Models
 {
     public class SportsProContext : DbContext
@@ -14,6 +16,10 @@ namespace CS_1.Models
 
         public DbSet<Customer> Customers { get; set; } = null!;
 
+        public DbSet<Country> Countries { get; set; } = null!;
+
+        public DbSet<Incident> Incidents { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasData(
@@ -26,9 +32,22 @@ namespace CS_1.Models
                 );
 
             modelBuilder.Entity<Customer>().HasData(
-                new Customer { CustomerId = 1, FirstName = "Kaitlyn", LastName = "Anthoni", Address = "120 Buddy Boulevard", City = "San Francisco", State = "California", PostalCode = 09993, Email = "kanthoni@pge.com", Phone = "8005550489" }
+                new Customer { CustomerId = 1, FirstName = "Kaitlyn", LastName = "Anthoni", Address = "120 Buddy Boulevard", City = "San Francisco", State = "California", PostalCode = 09993, Email = "kanthoni@pge.com", Phone = "8005550489", CountryId = "CDA" }
                 );
 
+            modelBuilder.Entity<Country>().HasData(
+                new Country { CountryId = "USA", Name = "United States of America"},
+                new Country { CountryId = "CDA", Name = "Canada" },
+                new Country { CountryId = "UNK", Name = "United Kingdom" },
+                new Country { CountryId = "JPN", Name = "Japan" },
+                new Country { CountryId = "AUS", Name = "Australia" },
+                new Country { CountryId = "RSA", Name = "Russia" },
+                new Country { CountryId = "CHA", Name = "China" }
+                );
+
+            modelBuilder.Entity<Incident>().HasData(
+                new Incident { IncidentId = 1, CustomerId = 1, ProductId = 1, Title = "Cant run", Description = "The app won't open properly", TechnicianId = 1, DateOpened = "", DateClosed = "" }
+                );
         }
     }
 }

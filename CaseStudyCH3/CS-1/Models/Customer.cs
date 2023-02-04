@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 namespace CS_1.Models
 {
     public class Customer
@@ -29,5 +30,11 @@ namespace CS_1.Models
 
         [Required(ErrorMessage = "Please enter your phone number")]
         public string Phone { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Please select a country")]
+        public string CountryId { get; set; } = string.Empty;
+
+        [ValidateNever]
+        public Country Country { get; set; } = null!;
     }
 }

@@ -1,4 +1,4 @@
-﻿@model List<Customer>
+﻿@model List<Incident>
 
 @{
     ViewData["Title"] = "SportsPro :)";
@@ -33,10 +33,10 @@
                             <a class="nav-link link-light fw-bold active" aria-current="page" href="/Technician/">Technicians</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-light fw-bold active" aria-current="page" href="#">Customers</a>
+                            <a class="nav-link link-light fw-bold active" aria-current="page" href="/Customer/">Customers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-light fw-bold active" aria-current="page" href="#">Incidents</a>
+                            <a class="nav-link link-light fw-bold active" aria-current="page" href="/Incident/">Incidents</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link link-light fw-bold active" aria-current="page" href="#">Registrations</a>
@@ -57,30 +57,32 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>City</th>
-                <th>Country</th>
+                <th>Title</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Date Opened</th>
+                <th>Date Closed</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in Model)
+            @foreach (var incident in Model)
             {
                 <tr>
-                    <td>@customer.FirstName @customer.LastName</td>
-                    <td>@customer.Email</td>
-                    <td>@customer.City</td>
-                    <td>@customer.Country.Name</td>
+                    <td>@incident.Title</td>
+                    <td>@incident.Customer</td>
+                    <td>@incident.Product</td>
+                    <td>@incident.DateOpened</td>
+                    <td>@incident.DateClosed</td>
                     <td>
-                        <a asp-controller="Customer" asp-action="Edit" asp-route-id="@customer.CustomerId" class="btn btn-primary">Edit</a>
-                        <a asp-controller="Customer" asp-action="Delete" asp-route-id="@customer.CustomerId" class="btn btn-primary">Delete</a>
+                        <a asp-controller="Incident" asp-action="Edit" asp-route-id="@incident.IncidentId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="Incident" asp-action="Delete" asp-route-id="@incident.IncidentId" class="btn btn-primary">Delete</a>
                 </tr>
             }
         </tbody>
     </table>
     <div class="mb-2">
-        <a asp-controller="Customer" asp-action="Add" class="fw-bold fs-5 ms-2 btn btn-primary">Add Customer</a>
+        <a asp-controller="Incident" asp-action="Add" class="fw-bold fs-5 ms-2 btn btn-primary">Add Incident</a>
     </div>
     <br />
 </body>
