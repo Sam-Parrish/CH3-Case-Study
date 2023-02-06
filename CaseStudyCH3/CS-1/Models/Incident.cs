@@ -6,6 +6,9 @@ namespace CS_1.Models
 	public class Incident
 	{
 		public int IncidentId { get; set; }
+		public string DateOpened { get; set; } = string.Empty;
+
+		public string DateClosed { get; set; } = string.Empty;
 
 		[Required(ErrorMessage = "Please enter an incident title")]
 		public string Title { get; set; } = string.Empty;
@@ -22,10 +25,7 @@ namespace CS_1.Models
         [ValidateNever]
         public Product Product { get; set; } = null!;
 
-		public string DateOpened { get; set; } = string.Empty;
-
-		public string DateClosed { get; set; } = string.Empty;
-
+		[Required(ErrorMessage = "Please enter a description")]
 		public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please select a technician")]

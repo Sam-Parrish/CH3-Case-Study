@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS1.Migrations
 {
     [DbContext(typeof(SportsProContext))]
-    [Migration("20230202220108_Initial")]
+    [Migration("20230206074516_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,6 +24,57 @@ namespace CS1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CS_1.Models.Country", b =>
+                {
+                    b.Property<string>("CountryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            CountryId = "USA",
+                            Name = "United States of America"
+                        },
+                        new
+                        {
+                            CountryId = "CDA",
+                            Name = "Canada"
+                        },
+                        new
+                        {
+                            CountryId = "UNK",
+                            Name = "United Kingdom"
+                        },
+                        new
+                        {
+                            CountryId = "JPN",
+                            Name = "Japan"
+                        },
+                        new
+                        {
+                            CountryId = "AUS",
+                            Name = "Australia"
+                        },
+                        new
+                        {
+                            CountryId = "RSA",
+                            Name = "Russia"
+                        },
+                        new
+                        {
+                            CountryId = "CHA",
+                            Name = "China"
+                        });
+                });
 
             modelBuilder.Entity("CS_1.Models.Customer", b =>
                 {
@@ -40,6 +91,10 @@ namespace CS1.Migrations
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -66,6 +121,8 @@ namespace CS1.Migrations
 
                     b.HasKey("CustomerId");
 
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Customers");
 
                     b.HasData(
@@ -74,12 +131,70 @@ namespace CS1.Migrations
                             CustomerId = 1,
                             Address = "120 Buddy Boulevard",
                             City = "San Francisco",
+                            CountryId = "CDA",
                             Email = "kanthoni@pge.com",
                             FirstName = "Kaitlyn",
                             LastName = "Anthoni",
                             Phone = "8005550489",
                             PostalCode = 9993,
                             State = "California"
+                        });
+                });
+
+            modelBuilder.Entity("CS_1.Models.Incident", b =>
+                {
+                    b.Property<int>("IncidentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IncidentId"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DateClosed")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateOpened")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TechnicianId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IncidentId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("TechnicianId");
+
+                    b.ToTable("Incidents");
+
+                    b.HasData(
+                        new
+                        {
+                            IncidentId = 1,
+                            CustomerId = 1,
+                            DateClosed = "",
+                            DateOpened = "",
+                            Description = "The app won't open properly",
+                            ProductId = 1,
+                            TechnicianId = 1,
+                            Title = "Cant run"
                         });
                 });
 
@@ -160,6 +275,44 @@ namespace CS1.Migrations
                             Name = "Alison Diaz",
                             PhoneNumber = "8005550443"
                         });
+                });
+
+            modelBuilder.Entity("CS_1.Models.Customer", b =>
+                {
+                    b.HasOne("CS_1.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("CS_1.Models.Incident", b =>
+                {
+                    b.HasOne("CS_1.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CS_1.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CS_1.Models.Technician", "Technician")
+                        .WithMany()
+                        .HasForeignKey("TechnicianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Technician");
                 });
 #pragma warning restore 612, 618
         }

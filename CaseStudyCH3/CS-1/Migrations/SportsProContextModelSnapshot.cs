@@ -33,7 +33,7 @@ namespace CS1.Migrations
 
                     b.HasKey("CountryId");
 
-                    b.ToTable("Countrys");
+                    b.ToTable("Countries");
 
                     b.HasData(
                         new
@@ -138,6 +138,63 @@ namespace CS1.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CS_1.Models.Incident", b =>
+                {
+                    b.Property<int>("IncidentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IncidentId"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DateClosed")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateOpened")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TechnicianId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IncidentId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("TechnicianId");
+
+                    b.ToTable("Incidents");
+
+                    b.HasData(
+                        new
+                        {
+                            IncidentId = 1,
+                            CustomerId = 1,
+                            DateClosed = "",
+                            DateOpened = "",
+                            Description = "The app won't open properly",
+                            ProductId = 1,
+                            TechnicianId = 1,
+                            Title = "Cant run"
+                        });
+                });
+
             modelBuilder.Entity("CS_1.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -226,6 +283,33 @@ namespace CS1.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("CS_1.Models.Incident", b =>
+                {
+                    b.HasOne("CS_1.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CS_1.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CS_1.Models.Technician", "Technician")
+                        .WithMany()
+                        .HasForeignKey("TechnicianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Technician");
                 });
 #pragma warning restore 612, 618
         }

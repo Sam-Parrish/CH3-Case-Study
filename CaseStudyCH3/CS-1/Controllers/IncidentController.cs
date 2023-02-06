@@ -13,7 +13,7 @@ namespace CS_1.Controllers
 
 		public IActionResult Index()
 		{
-            var incident = Context.Incidents.OrderBy(p => p.Customer).ToList();
+			var incident = Context.Incidents.Include(c => c.Customer).Include(p => p.Product).OrderBy(i => i.CustomerId).ToList();
 
             return View(incident);
         }
@@ -23,14 +23,18 @@ namespace CS_1.Controllers
 		public IActionResult Add()
 		{
 			ViewBag.Action = "Add ";
-			ViewBag.Incidents = Context.Incidents.OrderBy(i => i.Customer).ToList();
+			ViewBag.Customers = Context.Customers.OrderBy(i => i.CustomerId).ToList();
+			ViewBag.Products = Context.Products.OrderBy(i => i.ProductId).ToList();
+			ViewBag.Technicians = Context.Technicians.OrderBy(i => i.TechnicianId).ToList();
 			return View("Edit", new Incident());
 		}
 
 		public IActionResult Edit(int id)
 		{
 			ViewBag.Action = "Edit ";
-			ViewBag.Incidents = Context.Incidents.OrderBy(i => i.Customer).ToList();
+			ViewBag.Customers = Context.Customers.OrderBy(i => i.CustomerId).ToList();
+			ViewBag.Products = Context.Products.OrderBy(i => i.ProductId).ToList();
+			ViewBag.Technicians = Context.Technicians.OrderBy(i => i.TechnicianId).ToList();
 			var incident = Context.Incidents.Find(id);
 			return View(incident);
 		}
@@ -55,7 +59,9 @@ namespace CS_1.Controllers
 			else
 			{
 				ViewBag.Action = (modifiedIncident.IncidentId == 0) ? "Add " : "Edit ";
-				ViewBag.Incidents = Context.Incidents.OrderBy(i => i.Customer).ToList();
+				ViewBag.Customers = Context.Customers.OrderBy(i => i.CustomerId).ToList();
+				ViewBag.Products = Context.Products.OrderBy(i => i.ProductId).ToList();
+				ViewBag.Technicians = Context.Technicians.OrderBy(i => i.TechnicianId).ToList();
 				return View(modifiedIncident);
 			}
 		}
