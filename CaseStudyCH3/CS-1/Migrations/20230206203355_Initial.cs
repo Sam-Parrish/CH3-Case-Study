@@ -89,11 +89,11 @@ namespace CS1.Migrations
                 {
                     IncidentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DateOpened = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateClosed = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    DateOpened = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateClosed = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TechnicianId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -156,7 +156,7 @@ namespace CS1.Migrations
             migrationBuilder.InsertData(
                 table: "Incidents",
                 columns: new[] { "IncidentId", "CustomerId", "DateClosed", "DateOpened", "Description", "ProductId", "TechnicianId", "Title" },
-                values: new object[] { 1, 1, "", "", "The app won't open properly", 1, 1, "Cant run" });
+                values: new object[] { 1, 1, "-", "-", "The app won't open properly", 1, 1, "Cant run" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_CountryId",

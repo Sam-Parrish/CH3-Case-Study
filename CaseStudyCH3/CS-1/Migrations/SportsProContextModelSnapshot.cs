@@ -186,8 +186,8 @@ namespace CS1.Migrations
                         {
                             IncidentId = 1,
                             CustomerId = 1,
-                            DateClosed = "",
-                            DateOpened = "",
+                            DateClosed = "-",
+                            DateOpened = "-",
                             Description = "The app won't open properly",
                             ProductId = 1,
                             TechnicianId = 1,

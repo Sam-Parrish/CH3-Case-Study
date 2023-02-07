@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS1.Migrations
 {
     [DbContext(typeof(SportsProContext))]
-    [Migration("20230206074516_Initial")]
+    [Migration("20230206203355_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -189,8 +189,8 @@ namespace CS1.Migrations
                         {
                             IncidentId = 1,
                             CustomerId = 1,
-                            DateClosed = "",
-                            DateOpened = "",
+                            DateClosed = "-",
+                            DateOpened = "-",
                             Description = "The app won't open properly",
                             ProductId = 1,
                             TechnicianId = 1,
