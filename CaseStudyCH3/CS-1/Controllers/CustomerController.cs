@@ -11,7 +11,8 @@ namespace CS_1.Controllers
 
         public CustomerController(SportsProContext ctx) => Context = ctx;
 
-        public IActionResult Index()
+        [Route("customers")]
+        public IActionResult List()
         {
             var customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
 
@@ -50,7 +51,7 @@ namespace CS_1.Controllers
                     Context.Customers.Update(modifiedCustomer);
                 }
                 Context.SaveChanges();
-                return RedirectToAction("Index", "Customer");
+                return RedirectToAction("List", "Customer");
             }
             else
             {
@@ -77,7 +78,7 @@ namespace CS_1.Controllers
         {
             Context.Customers.Remove(customer);
             Context.SaveChanges();
-            return RedirectToAction("Index", "Customer");
+            return RedirectToAction("List", "Customer");
         }
     }
 }

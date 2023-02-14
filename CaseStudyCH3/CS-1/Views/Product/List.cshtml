@@ -1,0 +1,49 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "SportsPro :)";
+    Layout = "_Layout";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        SportsPro
+    </title>
+</head>
+<body>
+    <br />
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Product Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Release Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductCode</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price.ToString("C2")</td>
+                    <td>@product.ReleaseDate</td>
+                    <td>
+                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-primary">Delete</a>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="mb-2">
+        <a asp-controller="Product" asp-action="Add" class="fw-bold fs-5 ms-2 btn btn-primary">Add New Product</a>
+    </div>
+    <br/>
+</body>
+<footer>&copy;2022 - SportsPro</footer>
+</html>

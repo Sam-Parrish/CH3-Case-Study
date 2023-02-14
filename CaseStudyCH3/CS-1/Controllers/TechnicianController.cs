@@ -10,7 +10,8 @@ namespace CS_1.Controllers
 
         public TechnicianController(SportsProContext ctx) => Context = ctx;
 
-        public IActionResult Index()
+        [Route("technicians")]
+        public IActionResult List()
         {
             var technician = Context.Technicians.OrderBy(p => p.Name).ToList();
 
@@ -47,7 +48,7 @@ namespace CS_1.Controllers
                     Context.Technicians.Update(modifiedTechnician);
                 }
                 Context.SaveChanges();
-                return RedirectToAction("Index", "Technician");
+                return RedirectToAction("List", "Technician");
             }
             else
             {
@@ -73,7 +74,7 @@ namespace CS_1.Controllers
         {
             Context.Technicians.Remove(technician);
             Context.SaveChanges();
-            return RedirectToAction("Index", "Technician");
+            return RedirectToAction("List", "Technician");
         }
     }
 }

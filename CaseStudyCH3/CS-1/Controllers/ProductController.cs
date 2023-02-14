@@ -10,7 +10,8 @@ namespace CS_1.Controllers
 
         public ProductController(SportsProContext ctx) => context = ctx;
 
-        public IActionResult Index()
+		[Route("products")]
+		public IActionResult List()
         {
             var product = context.Products.OrderBy(p => p.Name).ToList();
 
@@ -47,7 +48,7 @@ namespace CS_1.Controllers
                     context.Products.Update(modifiedProduct);
                 }
                 context.SaveChanges();
-                return RedirectToAction("Index", "Product");
+                return RedirectToAction("List", "Product");
             }
             else
             {
@@ -73,7 +74,7 @@ namespace CS_1.Controllers
         {
             context.Products.Remove(product);
             context.SaveChanges();
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("List", "Product");
         }
     }
 }

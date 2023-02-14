@@ -12,7 +12,7 @@ namespace CS_1.Controllers
         {
             _logger = logger;
         }
-
+        [Route("Home")]
         public IActionResult Index()
         {
             return View();

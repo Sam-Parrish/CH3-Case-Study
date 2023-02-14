@@ -11,7 +11,8 @@ namespace CS_1.Controllers
 
 		public IncidentController(SportsProContext ctx) => Context = ctx;
 
-		public IActionResult Index()
+		[Route("incidents")]
+		public IActionResult List()
 		{
 			var incident = Context.Incidents.Include(c => c.Customer).Include(p => p.Product).OrderBy(i => i.IncidentId).ToList();
 
@@ -54,7 +55,7 @@ namespace CS_1.Controllers
 					Context.Incidents.Update(modifiedIncident);
 				}
 				Context.SaveChanges();
-				return RedirectToAction("Index", "Incident");
+				return RedirectToAction("List", "Incident");
 			}
 			else
 			{
@@ -83,7 +84,7 @@ namespace CS_1.Controllers
 		{
 			Context.Incidents.Remove(incident);
 			Context.SaveChanges();
-			return RedirectToAction("Index", "Incident");
+			return RedirectToAction("List", "Incident");
 		}
 	}
 }

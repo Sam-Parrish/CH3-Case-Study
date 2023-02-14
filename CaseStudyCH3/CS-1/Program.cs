@@ -8,6 +8,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<SportsProContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SportsProContext")));
 
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.AppendTrailingSlash = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
