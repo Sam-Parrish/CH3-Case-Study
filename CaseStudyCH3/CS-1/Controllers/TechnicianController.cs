@@ -13,7 +13,8 @@ namespace CS_1.Controllers
         [Route("technicians")]
         public IActionResult List()
         {
-            var technician = Context.Technicians.OrderBy(p => p.Name).ToList();
+			ViewBag.SelectedCategoryName = "Tech";
+			var technician = Context.Technicians.OrderBy(p => p.Name).ToList();
 
             return View(technician);
         }

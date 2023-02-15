@@ -6,14 +6,15 @@ namespace CS_1.Controllers
 {
     public class ProductController : Controller
     {
-        private SportsProContext context { get; set; }
+        private SportsProContext Context { get; set; }
 
-        public ProductController(SportsProContext ctx) => context = ctx;
+        public ProductController(SportsProContext ctx) => Context = ctx;
 
 		[Route("products")]
 		public IActionResult List()
         {
-            var product = context.Products.OrderBy(p => p.Name).ToList();
+			ViewBag.SelectedCategoryName = "Product";
+			var product = Context.Products.OrderBy(p => p.Name).ToList();
 
             return View(product);
         }
@@ -29,7 +30,7 @@ namespace CS_1.Controllers
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit ";
-            var product = context.Products.Find(id);
+            var product = Context.Products.Find(id);
             return View(product);
         }
 
@@ -41,13 +42,13 @@ namespace CS_1.Controllers
             {
                 if (modifiedProduct.ProductId == 0)
                 {
-                    context.Products.Add(modifiedProduct);
+                    Context.Products.Add(modifiedProduct);
                 }
                 else
                 {
-                    context.Products.Update(modifiedProduct);
+                    Context.Products.Update(modifiedProduct);
                 }
-                context.SaveChanges();
+                Context.SaveChanges();
                 return RedirectToAction("List", "Product");
             }
             else
@@ -62,7 +63,7 @@ namespace CS_1.Controllers
         public IActionResult Delete(int id)
         {
             ViewBag.Action = "Delete ";
-            var product = context.Products.Find(id);
+            var product = Context.Products.Find(id);
 
             return View(product);
         }
@@ -72,8 +73,8 @@ namespace CS_1.Controllers
 
         public IActionResult Delete(Product product)
         {
-            context.Products.Remove(product);
-            context.SaveChanges();
+            Context.Products.Remove(product);
+            Context.SaveChanges();
             return RedirectToAction("List", "Product");
         }
     }

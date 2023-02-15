@@ -1,72 +1,60 @@
 ﻿@model Home
 
 @{
-	ViewData["Title"] = "SportsPro :)";
-	Layout = "_Layout";
+    ViewData["Title"] = "SportsPro";
+    Layout = "_Layout";
 }
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>
-		SportsPro
-	</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        SportsPro
+    </title>
 </head>
 <body>
-	<br/>
-	<div class="mainPage">
-		<div class="sportsProTitle">
-			<h2>SportsPro Technical Support</h2>
-			<p>Sports managament software for the sports enthusiast</p>
-		</div>
-		<h2>Admin</h2>
-		<div class="list-items">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand text-black active" asp-area="" asp-controller="Product" asp-action="List">Manage Products</a>
-				</div>
-			</nav>
-		</div>
-		<div class="list-items">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand text-black active" asp-area="" asp-controller="Technician" asp-action="List">Manage Technicians</a>
-				</div>
-			</nav>
-		</div>
-		<div class="list-items">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand text-black active" asp-area="" asp-controller="Customer" asp-action="List">Manage Customers</a>
-				</div>
-			</nav>
-		</div>
-		<div class="list-items">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand text-black active" asp-area="" asp-controller="Incident" asp-action="List">Manage Incidents</a>
-				</div>
-			</nav>
-		</div>
-		<div class="list-items">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand text-black active" asp-area="" asp-controller="Registration" asp-action="List">Manage Registrations</a>
-				</div>
-			</nav>
-		</div>
-		</br>
-		<h1>Technicians</h1>
-		<div class="list-items">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand text-black active" asp-area="" asp-controller="Incident" asp-action="List">Update Incidents</a>
-				</div>
-			</nav>
-		</div>
-		<br />
-	</div>
+    <br />
+    <div class="mainPage">
+        <div class="sportsProTitle">
+            <h2>SportsPro Technical Support</h2>
+            <p>Sports managament software for the sports enthusiast</p>
+        </div>
+        <h2>Admin</h2>
+        <div class="list-items">
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Product" asp-action="List">Manage Products</a>
+                </div>
+                <br /><br />
+                <div class="container-fluid">
+                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Technician" asp-action="List">Manage Technicians</a>
+                </div>
+                <br /><br />
+                <div class="container-fluid">
+                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Customer" asp-action="List">Manage Customers</a>
+                </div>
+                <br /><br />
+                <div class="container-fluid">
+                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Incident" asp-action="List">Manage Incidents</a>
+                </div>
+                <br /><br />
+                <div class="container-fluid">
+                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Registration" asp-action="List">Manage Registrations</a>
+                </div>
+                <br /><br />
+            </nav>
+        </div>
+        <br />
+        <h1>Technicians</h1>
+        <div class="list-items">
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Incident" asp-action="List">Update Incidents</a>
+                </div>
+            </nav>
+        </div>
+        <br />
+    </div>
 </body>
-<footer>&copy;2022 - SportsPro</footer>
 </html>

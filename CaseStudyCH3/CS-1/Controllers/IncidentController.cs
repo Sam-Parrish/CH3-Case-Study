@@ -14,6 +14,7 @@ namespace CS_1.Controllers
 		[Route("incidents")]
 		public IActionResult List()
 		{
+			ViewBag.SelectedCategoryName = "Incident";
 			var incident = Context.Incidents.Include(c => c.Customer).Include(p => p.Product).OrderBy(i => i.IncidentId).ToList();
 
             return View(incident);

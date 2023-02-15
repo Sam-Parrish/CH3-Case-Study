@@ -6,27 +6,15 @@ namespace CS_1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+		private SportsProContext Context { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+		public HomeController(SportsProContext ctx) => Context = ctx;
+
+		//[Route("Home")]
+		public IActionResult Index()
         {
-            _logger = logger;
-        }
-        [Route("Home")]
-        public IActionResult Index()
-        {
+            ViewBag.SelectedCategoryName = "Home";
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new Home { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

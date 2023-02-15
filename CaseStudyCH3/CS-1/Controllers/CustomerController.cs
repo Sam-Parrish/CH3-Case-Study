@@ -14,7 +14,8 @@ namespace CS_1.Controllers
         [Route("customers")]
         public IActionResult List()
         {
-            var customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
+			ViewBag.SelectedCategoryName = "Customer";
+			var customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
 
             return View(customer);
         }

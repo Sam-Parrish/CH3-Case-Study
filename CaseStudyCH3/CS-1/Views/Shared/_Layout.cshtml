@@ -9,46 +9,47 @@
 </head>
 <body>
     <div>
-		<div class="navBarDiv container-fluid">
-			<nav class="navbar navbar-expand-lg bg-body-tertiary">
-				<div class="container-fluid">
-					<h2>SportsPro</h2>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav flex-grow-1">
-							<li class="nav-item">
-								<a class="nav-link text-white active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white active" asp-area="" asp-controller="Product" asp-action="List">Products</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white active" asp-area="" asp-controller="Technician" asp-action="List">Technicians</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white active" asp-area="" asp-controller="Customer" asp-action="List">Customers</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white active" asp-area="" asp-controller="Incident" asp-action="List">Incidents</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white active" asp-area="" asp-controller="Registration" asp-action="List">Registrations</a>
-							</li>
-						</ul>
-						<div class="aboutPage float-right">
-							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<li class="nav-item">
-									<a class="nav-link link-light fw-bold active" aria-current="page" href="/About/">About</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
+        <div class="navBarDiv container-fluid">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <h2 class="fst-italic">SportsPro</h2>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Home" ? "text-white active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Product" ? "text-white active" : "")" asp-area="" asp-controller="Product" asp-action="List">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Tech" ? "text-white active" : "")" asp-area="" asp-controller="Technician" asp-action="List">Technicians</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Customer" ? "text-white active" : "")" asp-area="" asp-controller="Customer" asp-action="List">Customers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Incident" ? "text-white active" : "")" asp-area="" asp-controller="Incident" asp-action="List">Incidents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Register" ? "text-white active" : "")" asp-area="" asp-controller="Registration" asp-action="List">Registrations</a>
+                            </li>
+                        </ul>
+                        <div class="aboutPage float-right">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="navbar-brand text-info @(ViewBag.SelectedCategoryName == "About" ? "text-white" : "")" asp-area="" asp-controller="About" asp-action="Page">About</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
         @RenderBody()
+        <footer>&copy;SportsPro 2022 - Samuel James Parrish</footer>
     </div>
 </body>
 </html>
