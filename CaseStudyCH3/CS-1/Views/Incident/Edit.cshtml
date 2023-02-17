@@ -15,11 +15,13 @@
             <div class="mb-3">
                 <label asp-for="CustomerId" class="form-label">Customer</label>
                 <select asp-for="CustomerId" asp-items="@(new SelectList(ViewBag.Customers, "CustomerId", "FirstName", "LastName"))" class="form-select">
+                    <option value="">Select a customer...</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label asp-for="ProductId" class="form-label">Product</label>
                 <select asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products, "ProductId", "Name"))" class="form-select">
+                    <option value="">Select a product...</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -33,6 +35,7 @@
             <div class="mb-3">
                 <label asp-for="TechnicianId" class="form-label">Technician</label>
                 <select asp-for="TechnicianId" asp-items="@(new SelectList(ViewBag.Technicians, "TechnicianId", "Name"))" class="form-select">
+                    <option value="">Select a technician...</option>
                 </select>
             </div>
             <div class="mb-3">
