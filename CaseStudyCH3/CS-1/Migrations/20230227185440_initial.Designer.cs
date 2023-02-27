@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS1.Migrations
 {
     [DbContext(typeof(SportsProContext))]
-    [Migration("20230215200101_Initial")]
-    partial class Initial
+    [Migration("20230227185440_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

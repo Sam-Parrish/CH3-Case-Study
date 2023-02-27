@@ -29,10 +29,11 @@ a{
     border-style:solid;
 }
 
-footer{
-    border-style:solid;
-    border-color:lightgray;
-    padding:0.4em;
+footer {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: lightgray;
+    padding: 0.4em;
 }
 
 .editDiv {
