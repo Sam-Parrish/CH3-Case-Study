@@ -19,6 +19,13 @@ namespace CS_1.Controllers
             return View(technician);
         }
 
+        public IActionResult GetTech()
+        {
+            var technician = Context.Technicians.OrderBy(p => p.Name).ToList();
+
+            return View(technician);
+        }
+
         [HttpGet]
 
         public IActionResult Add()
@@ -76,6 +83,13 @@ namespace CS_1.Controllers
             Context.Technicians.Remove(technician);
             Context.SaveChanges();
             return RedirectToAction("List", "Technician");
+        }
+
+        [HttpGet]
+        public IActionResult Find(int id)
+        {
+            var technician = Context.Technicians.Find(id);
+            return View(technician);
         }
     }
 }
