@@ -49,7 +49,11 @@
             </nav>
         </div>
         @RenderBody()
-        <footer>&copy;SportsPro 2022 - Samuel James Parrish</footer>
+        <footer class="border-top footer">&copy;SportsPro @DateTime.Now.Year - Samuel James Parrish</footer>
     </div>
+
+    <script src="~/lib/jquer/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

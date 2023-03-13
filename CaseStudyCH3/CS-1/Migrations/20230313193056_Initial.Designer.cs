@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS1.Migrations
 {
     [DbContext(typeof(SportsProContext))]
-    [Migration("20230308183835_Initial")]
+    [Migration("20230313193056_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -152,13 +152,11 @@ namespace CS1.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DateClosed")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("DateClosed")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("DateOpened")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DateOpened")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -189,8 +187,30 @@ namespace CS1.Migrations
                         {
                             IncidentId = 1,
                             CustomerId = 1,
-                            DateClosed = "-",
-                            DateOpened = "-",
+                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOpened = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The app won't open properly",
+                            ProductId = 1,
+                            TechnicianId = 1,
+                            Title = "Cant run"
+                        },
+                        new
+                        {
+                            IncidentId = 2,
+                            CustomerId = 1,
+                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOpened = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The app won't open properly",
+                            ProductId = 1,
+                            TechnicianId = 1,
+                            Title = "Cant run"
+                        },
+                        new
+                        {
+                            IncidentId = 3,
+                            CustomerId = 1,
+                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOpened = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The app won't open properly",
                             ProductId = 1,
                             TechnicianId = 1,

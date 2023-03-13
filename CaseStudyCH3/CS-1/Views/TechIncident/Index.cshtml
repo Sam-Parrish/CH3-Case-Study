@@ -1,0 +1,20 @@
+﻿@model Technician
+@{
+
+    ViewData["Title"] = "SportsPro";
+    Layout = "_Layout";
+
+}
+<body>
+    <div class="container-fluid">
+        <br /><h1 class="text-danger">@TempData["message"]</h1>
+        <h2 class="mt-2">Technician</h2>
+        <form asp-action="List" asp-controller="TechIncident" method="post">
+            <select asp-for="TechnicianId" class="form-select" asp-items="@(new SelectList(ViewBag.Technicians, "TechnicianId", "Name"))">
+                <option value="0">Select a Technician...</option>
+            </select>
+            <button class="btn btn-primary mt-2" type="submit">Select</button>
+        </form>
+    </div>
+    <br />
+</body>

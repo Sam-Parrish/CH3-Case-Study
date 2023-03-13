@@ -6,11 +6,11 @@ namespace CS_1.Models
 	public class Incident
 	{
 		public int IncidentId { get; set; }
-		public string DateOpened { get; set; } = string.Empty;
+		public DateTime DateOpened { get; set; } = DateTime.Now;
 
-		public string DateClosed { get; set; } = string.Empty;
+		public DateTime? DateClosed { get; set; } = null;
 
-		[Required(ErrorMessage = "Please enter an incident title")]
+        [Required(ErrorMessage = "Please enter an incident title")]
 		public string Title { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please select a customer")]

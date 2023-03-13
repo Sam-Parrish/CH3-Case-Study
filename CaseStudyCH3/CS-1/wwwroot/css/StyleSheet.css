@@ -1,4 +1,5 @@
 ﻿body {
+
 }
 
 .navBarDiv {
@@ -30,9 +31,6 @@ a{
 }
 
 footer {
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-color: lightgray;
     padding: 0.4em;
 }
 
@@ -47,4 +45,9 @@ footer {
 
 .sportsProTitle{
 margin-bottom:1em;
+}
+
+.ListDiv{
+    padding-left:4em;
+    padding-right:4em;
 }

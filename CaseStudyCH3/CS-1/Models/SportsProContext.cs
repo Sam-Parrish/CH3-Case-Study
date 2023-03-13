@@ -46,7 +46,9 @@ namespace CS_1.Models
                 );
 
             modelBuilder.Entity<Incident>().HasData(
-                new Incident { IncidentId = 1, CustomerId = 1, ProductId = 1, Title = "Cant run", Description = "The app won't open properly", TechnicianId = 1, DateOpened = "-", DateClosed = "-" }
+                new Incident { IncidentId = 1, CustomerId = 1, ProductId = 1, Title = "Cant run", Description = "The app won't open properly", TechnicianId = 1, DateOpened = new DateTime(), DateClosed = new DateTime() },
+                new Incident { IncidentId = 2, CustomerId = 1, ProductId = 1, Title = "Cant run", Description = "The app won't open properly", TechnicianId = 1, DateOpened = new DateTime(), DateClosed = new DateTime() },
+                new Incident { IncidentId = 3, CustomerId = 1, ProductId = 1, Title = "Cant run", Description = "The app won't open properly", TechnicianId = 1, DateOpened = new DateTime(), DateClosed = new DateTime() }
                 );
         }
     }
