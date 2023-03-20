@@ -48,8 +48,10 @@
                 </div>
             </nav>
         </div>
-        @RenderBody()
-        <footer class="border-top footer">&copy;SportsPro @DateTime.Now.Year - Samuel James Parrish</footer>
+        <div class="container">
+            @RenderBody()
+        </div>
+        <footer class="border-top footer">&copy;@DateTime.Now.Year - SportsPro - <a asp-action="" asp-controller="" class="">About</a></footer>
     </div>
 
     <script src="~/lib/jquer/dist/jquery.min.js"></script>

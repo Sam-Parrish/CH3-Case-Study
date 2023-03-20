@@ -16,11 +16,6 @@ a{
     margin-right:0.5em;
 }
 
-.mainPage {
-    padding-right: 2em;
-    padding-left: 2em;
-}
-
 .nav-link{
     font-size:larger;
 }
@@ -45,9 +40,4 @@ footer {
 
 .sportsProTitle{
 margin-bottom:1em;
-}
-
-.ListDiv{
-    padding-left:4em;
-    padding-right:4em;
 }

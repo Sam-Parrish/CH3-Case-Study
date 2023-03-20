@@ -15,6 +15,13 @@
 </head>
 <body>
     <br />
+    <h2>Incident Manager</h2>
+    <br />
+    <div class="row">
+        <div class="col-md-auto"><a asp-action="List" asp-route-id="1" class="btn btn-outline-primary @(ViewBag.IncidentSort == "All" ? "btn btn-outline-primary active" : "btn btn-outline-primary")">All Incidents</a></div>
+        <div class="col-md-auto"><a asp-action="List" asp-route-id="2" class="btn btn-outline-primary @(ViewBag.IncidentSort == "Unassign" ? "btn btn-outline-primary active" : "btn btn-outline-primary")">Unassigned Incidents</a></div>
+        <div class="col-md-auto mb-3"><a asp-action="List" asp-route-id="3" class="btn btn-outline-primary @(ViewBag.IncidentSort == "Open" ? "btn btn-outline-primary active" : "btn btn-outline-primary")">Open Incidents</a></div>
+    </div>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
