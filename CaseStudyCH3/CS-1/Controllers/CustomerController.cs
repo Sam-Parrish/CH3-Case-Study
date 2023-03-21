@@ -11,11 +11,44 @@ namespace CS_1.Controllers
 
         public CustomerController(SportsProContext ctx) => Context = ctx;
 
+        public string sortOrder = "NA";
+
         [Route("customers")]
-        public IActionResult List()
+        public IActionResult List(string id)
         {
 			ViewBag.SelectedCategoryName = "Customer";
 			var customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
+
+            if (id == "1")
+            {
+                customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
+                ViewBag.CustSort = "NA";
+                sortOrder = "NA";
+            }
+            else if (id == "2")
+            {
+                customer = Context.Customers.Include(c => c.Country).OrderByDescending(p => p.FirstName).ToList();
+                ViewBag.CustSort = "NZ";
+                sortOrder = "NZ";
+            }
+            else if (id == "3")
+            {
+                customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.Country.Name).ToList();
+                ViewBag.CustSort = "CA";
+                sortOrder = "CA";
+            }
+            else if (id == "4")
+            {
+                customer = Context.Customers.Include(c => c.Country).OrderByDescending(p => p.Country.Name).ToList();
+                ViewBag.CustSort = "CZ";
+                sortOrder = "CZ";
+            }
+            else
+            {
+                customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
+                ViewBag.CustSort = "NA";
+                sortOrder = "NA";
+            }
 
             return View(customer);
         }

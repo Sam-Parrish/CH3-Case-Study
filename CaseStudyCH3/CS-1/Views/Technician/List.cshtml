@@ -14,7 +14,13 @@
     </title>
 </head>
 <body>
-    <br />
+    <br/>
+    <h2 class="mb-3">Technician Manager</h2>
+        <div class="row">
+        <h6>Sort By:</h6>
+        <div class="col-md-auto"><a asp-action="List" asp-route-id="1" class="btn btn-outline-primary @(ViewBag.TechSort == "A" ? "btn btn-outline-primary active" : "btn btn-outline-primary")">A-Z</a></div>
+        <div class="col-md-auto mb-3"><a asp-action="List" asp-route-id="2" class="btn btn-outline-primary @(ViewBag.TechSort == "Z" ? "btn btn-outline-primary active" : "btn btn-outline-primary")">Z-A</a></div>
+    </div>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>

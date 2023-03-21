@@ -15,6 +15,12 @@
 </head>
 <body>
     <br />
+    <h2 class="mb-3">Product Manager</h2>
+    <div class="row">
+        <h6>Sort By:</h6>
+        <div class="col-md-auto"><a asp-action="List" asp-route-id="1" class="btn btn-outline-primary @(ViewBag.ProductSort == "High" ? "btn btn-outline-primary active" : "btn btn-outline-primary")">Highest Price</a></div>
+        <div class="col-md-auto mb-3"><a asp-action="List" asp-route-id="2" class="btn btn-outline-primary @(ViewBag.ProductSort == "Low" ? "btn btn-outline-primary active" : "btn btn-outline-primary")">Lowest Price</a></div>
+    </div>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -43,6 +49,6 @@
     <div class="mb-2">
         <a asp-controller="Product" asp-action="Add" class="fw-bold fs-5 ms-2 btn btn-primary">Add Product</a>
     </div>
-    <br/>
+    <br />
 </body>
 </html>

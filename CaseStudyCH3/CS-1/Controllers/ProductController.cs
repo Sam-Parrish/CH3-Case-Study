@@ -10,11 +10,31 @@ namespace CS_1.Controllers
 
         public ProductController(SportsProContext ctx) => Context = ctx;
 
+        public string sortOrder = "High";
+
 		[Route("products")]
-		public IActionResult List()
+		public IActionResult List(string id)
         {
 			ViewBag.SelectedCategoryName = "Product";
-			var product = Context.Products.OrderBy(p => p.Name).ToList();
+			var product = Context.Products.OrderByDescending(p => p.Price).ToList();
+            if (id == "1")
+            {
+                product = Context.Products.OrderByDescending(p => p.Price).ToList();
+                ViewBag.ProductSort = "High";
+                sortOrder = "High";
+            }
+            else if (id == "2")
+            {
+                product = Context.Products.OrderBy(p => p.Price).ToList();
+                ViewBag.ProductSort = "Low";
+                sortOrder = "Low";
+            }
+            else
+            {
+                product = Context.Products.OrderByDescending(p => p.Price).ToList();
+                ViewBag.ProductSort = "High";
+                sortOrder = "High";
+            }
 
             return View(product);
         }

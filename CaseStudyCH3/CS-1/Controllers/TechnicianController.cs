@@ -1,6 +1,7 @@
 ﻿using CS_1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq;
 
 namespace CS_1.Controllers
 {
@@ -10,11 +11,32 @@ namespace CS_1.Controllers
 
         public TechnicianController(SportsProContext ctx) => Context = ctx;
 
+        public string sortOrder = "A";
+
         [Route("technicians")]
-        public IActionResult List()
+        public IActionResult List(string id)
         {
 			ViewBag.SelectedCategoryName = "Tech";
 			var technician = Context.Technicians.OrderBy(p => p.Name).ToList();
+
+            if(id == "1")
+            {
+                technician = Context.Technicians.OrderBy(p => p.Name).ToList();
+                sortOrder = "A";
+                ViewBag.TechSort = "A";
+            }
+            else if(id == "2")
+            {
+                technician = Context.Technicians.OrderByDescending(p => p.Name).ToList();
+                sortOrder = "Z";
+                ViewBag.TechSort = "Z";
+            }
+            else
+            {
+                technician = Context.Technicians.OrderBy(p => p.Name).ToList();
+                sortOrder = "A";
+                ViewBag.TechSort = "A";
+            }
 
             return View(technician);
         }
