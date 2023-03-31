@@ -32,17 +32,17 @@ namespace CS_1.Models
                 );
 
             modelBuilder.Entity<Customer>().HasData(
-                new Customer { CustomerId = 1, FirstName = "Kaitlyn", LastName = "Anthoni", Address = "120 Buddy Boulevard", City = "San Francisco", State = "California", PostalCode = 09993, Email = "kanthoni@pge.com", Phone = "8005550489", CountryId = "CDA" }
+                new Customer { CustomerId = 1, FirstName = "Kaitlyn", LastName = "Anthoni", Address = "120 Buddy Boulevard", City = "San Francisco", State = "California", PostalCode = "62243", Email = "kanthoni@pge.com", Phone = "8005550489", CountryId = 2 }
                 );
 
             modelBuilder.Entity<Country>().HasData(
-                new Country { CountryId = "USA", Name = "United States of America"},
-                new Country { CountryId = "CDA", Name = "Canada" },
-                new Country { CountryId = "UNK", Name = "United Kingdom" },
-                new Country { CountryId = "JPN", Name = "Japan" },
-                new Country { CountryId = "AUS", Name = "Australia" },
-                new Country { CountryId = "RSA", Name = "Russia" },
-                new Country { CountryId = "CHA", Name = "China" }
+                new Country { CountryId = 1, Name = "United States of America" },
+                new Country { CountryId = 2, Name = "Canada" },
+                new Country { CountryId = 3, Name = "United Kingdom" },
+                new Country { CountryId = 4, Name = "Japan" },
+                new Country { CountryId = 5, Name = "Australia" },
+                new Country { CountryId = 6, Name = "Russia" },
+                new Country { CountryId = 7, Name = "China" }
                 );
 
             modelBuilder.Entity<Incident>().HasData(

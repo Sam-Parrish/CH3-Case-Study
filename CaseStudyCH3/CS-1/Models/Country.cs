@@ -2,7 +2,7 @@
 {
     public class Country
     {
-        public string CountryId { get; set; } = string.Empty;
+        public int CountryId { get; set; }
 
         public string Name { get; set; } = string.Empty;
     }

@@ -24,8 +24,11 @@ namespace CS1.Migrations
 
             modelBuilder.Entity("CS_1.Models.Country", b =>
                 {
-                    b.Property<string>("CountryId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -38,37 +41,37 @@ namespace CS1.Migrations
                     b.HasData(
                         new
                         {
-                            CountryId = "USA",
+                            CountryId = 1,
                             Name = "United States of America"
                         },
                         new
                         {
-                            CountryId = "CDA",
+                            CountryId = 2,
                             Name = "Canada"
                         },
                         new
                         {
-                            CountryId = "UNK",
+                            CountryId = 3,
                             Name = "United Kingdom"
                         },
                         new
                         {
-                            CountryId = "JPN",
+                            CountryId = 4,
                             Name = "Japan"
                         },
                         new
                         {
-                            CountryId = "AUS",
+                            CountryId = 5,
                             Name = "Australia"
                         },
                         new
                         {
-                            CountryId = "RSA",
+                            CountryId = 6,
                             Name = "Russia"
                         },
                         new
                         {
-                            CountryId = "CHA",
+                            CountryId = 7,
                             Name = "China"
                         });
                 });
@@ -83,38 +86,43 @@ namespace CS1.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(51)
+                        .HasColumnType("nvarchar(51)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(51)
+                        .HasColumnType("nvarchar(51)");
 
-                    b.Property<string>("CountryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(51)
+                        .HasColumnType("nvarchar(51)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(51)
+                        .HasColumnType("nvarchar(51)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(51)
+                        .HasColumnType("nvarchar(51)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("int");
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(51)
+                        .HasColumnType("nvarchar(51)");
 
                     b.HasKey("CustomerId");
 
@@ -128,12 +136,12 @@ namespace CS1.Migrations
                             CustomerId = 1,
                             Address = "120 Buddy Boulevard",
                             City = "San Francisco",
-                            CountryId = "CDA",
+                            CountryId = 2,
                             Email = "kanthoni@pge.com",
                             FirstName = "Kaitlyn",
                             LastName = "Anthoni",
                             Phone = "8005550489",
-                            PostalCode = 9993,
+                            PostalCode = "62243",
                             State = "California"
                         });
                 });

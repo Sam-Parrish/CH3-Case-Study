@@ -1,4 +1,5 @@
 ﻿using CS_1.Models;
+using CS_1.Models.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -16,8 +17,8 @@ namespace CS_1.Controllers
         [Route("customers")]
         public IActionResult List(string id)
         {
-			ViewBag.SelectedCategoryName = "Customer";
-			var customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
+            ViewBag.SelectedCategoryName = "Customer";
+            var customer = Context.Customers.Include(c => c.Country).OrderBy(p => p.FirstName).ToList();
 
             if (id == "1")
             {
@@ -74,8 +75,20 @@ namespace CS_1.Controllers
 
         public IActionResult Edit(Customer modifiedCustomer)
         {
+
+            if (modifiedCustomer.CustomerId == 0)
+            {
+                string msg = Validate.CheckEmail(Context, modifiedCustomer);
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    ModelState.AddModelError(nameof(modifiedCustomer.Email), msg);
+                }
+            }
+
             if (ModelState.IsValid)
             {
+                ViewBag.Valid = "Y";
                 if (modifiedCustomer.CustomerId == 0)
                 {
                     Context.Customers.Add(modifiedCustomer);
@@ -89,6 +102,7 @@ namespace CS_1.Controllers
             }
             else
             {
+                ViewBag.Valid = "N";
                 ViewBag.Action = (modifiedCustomer.CustomerId == 0) ? "Add " : "Edit ";
                 ViewBag.Countries = Context.Countries.OrderBy(c => c.Name).ToList();
                 return View(modifiedCustomer);

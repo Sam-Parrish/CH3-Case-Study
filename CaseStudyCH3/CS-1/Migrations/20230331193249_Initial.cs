@@ -17,7 +17,8 @@ namespace CS1.Migrations
                 name: "Countries",
                 columns: table => new
                 {
-                    CountryId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CountryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -62,15 +63,15 @@ namespace CS1.Migrations
                 {
                     CustomerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PostalCode = table.Column<int>(type: "int", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CountryId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(51)", maxLength: 51, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(51)", maxLength: 51, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(51)", maxLength: 51, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(51)", maxLength: 51, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(51)", maxLength: 51, nullable: false),
+                    State = table.Column<string>(type: "nvarchar(51)", maxLength: 51, nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,13 +126,13 @@ namespace CS1.Migrations
                 columns: new[] { "CountryId", "Name" },
                 values: new object[,]
                 {
-                    { "AUS", "Australia" },
-                    { "CDA", "Canada" },
-                    { "CHA", "China" },
-                    { "JPN", "Japan" },
-                    { "RSA", "Russia" },
-                    { "UNK", "United Kingdom" },
-                    { "USA", "United States of America" }
+                    { 1, "United States of America" },
+                    { 2, "Canada" },
+                    { 3, "United Kingdom" },
+                    { 4, "Japan" },
+                    { 5, "Australia" },
+                    { 6, "Russia" },
+                    { 7, "China" }
                 });
 
             migrationBuilder.InsertData(
@@ -151,7 +152,7 @@ namespace CS1.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "CustomerId", "Address", "City", "CountryId", "Email", "FirstName", "LastName", "Phone", "PostalCode", "State" },
-                values: new object[] { 1, "120 Buddy Boulevard", "San Francisco", "CDA", "kanthoni@pge.com", "Kaitlyn", "Anthoni", "8005550489", 9993, "California" });
+                values: new object[] { 1, "120 Buddy Boulevard", "San Francisco", 2, "kanthoni@pge.com", "Kaitlyn", "Anthoni", "8005550489", "62243", "California" });
 
             migrationBuilder.InsertData(
                 table: "Incidents",
