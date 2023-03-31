@@ -12,7 +12,7 @@
 
         <form asp-action="Edit" method="post">
             <div class="row mb-3">
-                <label asp-for="FirstName" class="form-label col-md-2">First Name</label><br />
+                <label asp-for="FirstName" class="firstName" id="form-label col-md-2">First Name</label><br />
                 <input asp-for="FirstName" class="form-control col-md-4" type="text"/>
                 <div class="col">
                     <span asp-validation-for="FirstName" class="text-danger"></span>

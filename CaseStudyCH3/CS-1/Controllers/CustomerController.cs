@@ -88,7 +88,6 @@ namespace CS_1.Controllers
 
             if (ModelState.IsValid)
             {
-                ViewBag.Valid = "Y";
                 if (modifiedCustomer.CustomerId == 0)
                 {
                     Context.Customers.Add(modifiedCustomer);
@@ -102,7 +101,6 @@ namespace CS_1.Controllers
             }
             else
             {
-                ViewBag.Valid = "N";
                 ViewBag.Action = (modifiedCustomer.CustomerId == 0) ? "Add " : "Edit ";
                 ViewBag.Countries = Context.Countries.OrderBy(c => c.Name).ToList();
                 return View(modifiedCustomer);

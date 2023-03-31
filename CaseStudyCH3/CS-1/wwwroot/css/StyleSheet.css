@@ -42,7 +42,7 @@ footer {
 margin-bottom:1em;
 }
 
-.input-validation-error {
+input.input-validation-error {
     border-color:red;
     border-style:solid;
     background-color: pink;
