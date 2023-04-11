@@ -1,0 +1,39 @@
+﻿@model TechIncidentViewModel
+@{
+    ViewBag.Title = "List Incidents for Technicians";
+    Layout = "_Layout";
+}
+<br />
+<div class="ListDiv">
+    <h2>Technician: @Model.Technician.Name's Incidents</h2>
+    @if (Model.Incidents.Count() > 0)
+    {
+        <table class="table table-bordered" table-striped>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Date Opened</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var incident in Model.Incidents)
+            {
+                <tr>
+                    <td>@incident.Title</td>
+                    <td>@incident.Customer.FirstName @incident.Customer.LastName</td>
+                    <td>@incident.Product.Name</td>
+                    <td>@incident.DateOpened.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="TechIncident" asp-route-id="@incident.IncidentId" class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>@Model.Technician.Name has no open incidents</p>
+    }
+</div>
