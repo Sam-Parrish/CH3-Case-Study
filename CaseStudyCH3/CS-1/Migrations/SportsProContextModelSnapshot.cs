@@ -242,6 +242,10 @@ namespace CS1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Registered")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
@@ -256,6 +260,7 @@ namespace CS1.Migrations
                             Name = "Tournament Master 1.0",
                             Price = 4.99m,
                             ProductCode = "TRN10",
+                            Registered = "Kaitlyn Anthoni",
                             ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -264,6 +269,7 @@ namespace CS1.Migrations
                             Name = "League Scheduler 1.0",
                             Price = 4.99m,
                             ProductCode = "LEAG10",
+                            Registered = "Kaitlyn Anthoni",
                             ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

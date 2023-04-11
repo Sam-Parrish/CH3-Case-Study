@@ -35,7 +35,8 @@ namespace CS1.Migrations
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Registered = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -137,11 +138,11 @@ namespace CS1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Name", "Price", "ProductCode", "ReleaseDate" },
+                columns: new[] { "ProductId", "Name", "Price", "ProductCode", "Registered", "ReleaseDate" },
                 values: new object[,]
                 {
-                    { 1, "Tournament Master 1.0", 4.99m, "TRN10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "League Scheduler 1.0", 4.99m, "LEAG10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, "Tournament Master 1.0", 4.99m, "TRN10", "Kaitlyn Anthoni", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "League Scheduler 1.0", 4.99m, "LEAG10", "Kaitlyn Anthoni", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
