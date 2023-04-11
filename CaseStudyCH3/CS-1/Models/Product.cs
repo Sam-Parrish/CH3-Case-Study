@@ -16,5 +16,7 @@ namespace CS_1.Models
 
 		[Required(ErrorMessage = "Please enter a release date.")]
 		public DateTime ReleaseDate { get; set; } = DateTime.Now;
+
+		public string Registered { get; set; } = null!;
 	}
 }

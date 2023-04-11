@@ -20,6 +20,8 @@ namespace CS_1.Models
         [MaxLength(51)]
         public string LastName { get; set; } = string.Empty;
 
+        public string FullName => $"{FirstName} {LastName}";
+
         [Required(ErrorMessage = "Please enter your home address")]
         [MinLength(1)]
         [MaxLength(51)]
