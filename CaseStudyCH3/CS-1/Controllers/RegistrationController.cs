@@ -45,7 +45,7 @@ namespace CS_1.Controllers
         }
 
         [HttpGet]
-        public IActionResult List(Customer custGuy, int id)
+        public IActionResult List(int id)
         {
             var customer = Context.Customers.Find(id);
             if (customer == null)
@@ -60,7 +60,7 @@ namespace CS_1.Controllers
                     Customer = customer,
                     Products = Context.Products
                     .OrderBy(i => i.Name)
-                    .Where(i => i.Registered == custGuy.FullName)
+                    .Where(i => i.Registered == customer.FullName)
                     .ToList()
                 };
                 return View(model);
