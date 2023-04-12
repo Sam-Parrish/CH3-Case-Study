@@ -63,11 +63,13 @@ namespace CS_1.Controllers
                 if (modifiedProduct.ProductId == 0)
                 {
                     Context.Products.Add(modifiedProduct);
+                    TempData["message"] = $"{modifiedProduct.Name} was successfully added";
                 }
                 else
                 {
                     Context.Products.Update(modifiedProduct);
-                }
+					TempData["message"] = $"{modifiedProduct.Name} was successfully changed";
+				}
                 Context.SaveChanges();
                 return RedirectToAction("List", "Product");
             }
@@ -76,7 +78,7 @@ namespace CS_1.Controllers
                 ViewBag.Action = (modifiedProduct.ProductId == 0) ? "Add " : "Edit ";
                 return View(modifiedProduct);
             }
-        }
+         }
 
         [HttpGet]
 
@@ -93,6 +95,7 @@ namespace CS_1.Controllers
 
         public IActionResult Delete(Product product)
         {
+            TempData["message"] = $"Product was successfully deleted";
             Context.Products.Remove(product);
             Context.SaveChanges();
             return RedirectToAction("List", "Product");

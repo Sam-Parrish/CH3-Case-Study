@@ -24,7 +24,7 @@ namespace CS_1.Models
         {
             modelBuilder.Entity<Product>().HasData(
                 new Product { ProductId = 1, ProductCode = "TRN10", Name = "Tournament Master 1.0", Price = (decimal)4.99, ReleaseDate = new DateTime(), Registered = "Kaitlyn Anthoni" },
-                new Product { ProductId = 2, ProductCode = "LEAG10", Name = "League Scheduler 1.0", Price = (decimal)4.99, ReleaseDate = new DateTime(), Registered = "Kaitlyn Anthoni" }
+                new Product { ProductId = 2, ProductCode = "LEAG10", Name = "League Scheduler 1.0", Price = (decimal)4.99, ReleaseDate = new DateTime(), Registered = "" }
                 );
 
             modelBuilder.Entity<Technician>().HasData(

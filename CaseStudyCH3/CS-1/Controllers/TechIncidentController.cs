@@ -75,7 +75,7 @@ namespace CS_1.Controllers
             int? techID = HttpContext.Session.GetInt32(TECH_KEY);
             if(!techID.HasValue)
             {
-                TempData["message"] = "Technician not found, pleas select a technician";
+                TempData["message"] = "Technician not found, please select a technician";
                 return RedirectToAction("Index");
             }
             var technician = Context.Technicians.Find(techID);

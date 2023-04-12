@@ -243,7 +243,6 @@ namespace CS1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Registered")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReleaseDate")
@@ -269,7 +268,7 @@ namespace CS1.Migrations
                             Name = "League Scheduler 1.0",
                             Price = 4.99m,
                             ProductCode = "LEAG10",
-                            Registered = "Kaitlyn Anthoni",
+                            Registered = "",
                             ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
