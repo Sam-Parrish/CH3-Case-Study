@@ -56,7 +56,7 @@ namespace CS_1.Controllers
             }
             else
             {
-                ViewBag.Products = Context.Products.Where(r => r.Registered == "" || r.Registered == null).OrderBy(c => c.Name).ToList();
+                ViewBag.Products = Context.Products.OrderBy(c => c.Name).ToList();
 
                 var model = new RegistrationViewModel
                 {
@@ -83,6 +83,7 @@ namespace CS_1.Controllers
             {
                 if(productFind.Registered == customer.FullName)
                 {
+                    TempData["message"] = $"{customer.FullName} is already registered to this product";
                     return RedirectToAction("List", "Registration");
                 }
                 else
