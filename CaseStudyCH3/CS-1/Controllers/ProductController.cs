@@ -44,7 +44,7 @@ namespace CS_1.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "Add ";
-            return View("Edit", new Product());
+            return View("Edit", new ConfigureProducts());
         }
 
         public IActionResult Edit(int id)

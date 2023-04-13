@@ -242,9 +242,6 @@ namespace CS1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Registered")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
@@ -259,7 +256,6 @@ namespace CS1.Migrations
                             Name = "Tournament Master 1.0",
                             Price = 4.99m,
                             ProductCode = "TRN10",
-                            Registered = "Kaitlyn Anthoni",
                             ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -268,7 +264,6 @@ namespace CS1.Migrations
                             Name = "League Scheduler 1.0",
                             Price = 4.99m,
                             ProductCode = "LEAG10",
-                            Registered = "",
                             ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -307,6 +302,21 @@ namespace CS1.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CustomerProduct", b =>
+                {
+                    b.Property<int>("CustomersCustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomersCustomerId", "ProductsProductId");
+
+                    b.HasIndex("ProductsProductId");
+
+                    b.ToTable("CustomerProduct");
+                });
+
             modelBuilder.Entity("CS_1.Models.Customer", b =>
                 {
                     b.HasOne("CS_1.Models.Country", "Country")
@@ -343,6 +353,21 @@ namespace CS1.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Technician");
+                });
+
+            modelBuilder.Entity("CustomerProduct", b =>
+                {
+                    b.HasOne("CS_1.Models.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomersCustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CS_1.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

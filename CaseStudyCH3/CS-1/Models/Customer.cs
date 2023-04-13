@@ -8,6 +8,8 @@ namespace CS_1.Models
 {
     public class Customer
     {
+        public Customer() => Products = new HashSet<Product>();
+
         public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]
@@ -59,5 +61,7 @@ namespace CS_1.Models
 
         [ValidateNever]
         public Country Country { get; set; } = null!;
+
+        public ICollection<Product> Products { get; set; }
     }
 }

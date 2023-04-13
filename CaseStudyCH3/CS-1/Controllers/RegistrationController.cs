@@ -62,7 +62,6 @@ namespace CS_1.Controllers
                 {
                     Customer = customer,
                     Products = Context.Products
-                    .Where(r => r.Registered == customer.FullName)
                     .OrderBy(i => i.Name)
                     .ToList()
                 };
@@ -79,25 +78,28 @@ namespace CS_1.Controllers
             int? custId = HttpContext.Session.GetInt32(REGISTRATION_KEY);
             var customer = Context.Customers.Find(custId);
 
-            if(customer != null && productFind != null)
+            var vm = new RegistrationViewModel();
+            if (prodId == 0)
             {
-                if(productFind.Registered == customer.FullName)
-                {
-                    TempData["message"] = $"{customer.FullName} is already registered to this product";
-                    return RedirectToAction("List", "Registration");
-                }
-                else
-                {
-                    productFind.Registered = customer.FullName;
-                    Context.Products.Update(productFind);
-                }
+                TempData["message"] = "Please select a product.";
+                return RedirectToAction("List", new { id = custId });
             }
             else
             {
-                return RedirectToAction("List", "Registration");
+                if (customer.Products.Any(p => p.ProductId == prodId))
+                {
+                    TempData["message"] = "Product already registered";
+                }
+                else
+                {
+                    TempData["message"] = "Customer registered";
+                    customer.Products.Add(productFind);
+                    vm.Customer = customer;
+                    vm.Products = Context.Products.ToList();
+                    Context.SaveChanges();
+                }
             }
-            Context.SaveChanges();
-            return RedirectToAction("List", "Registration");
+            return RedirectToAction("List", new { id = custId });
         }
     }
 }

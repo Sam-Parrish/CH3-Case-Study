@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CS1.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class manyToMany : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,8 +35,7 @@ namespace CS1.Migrations
                     ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Registered = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,6 +81,30 @@ namespace CS1.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "CountryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerProduct",
+                columns: table => new
+                {
+                    CustomersCustomerId = table.Column<int>(type: "int", nullable: false),
+                    ProductsProductId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerProduct", x => new { x.CustomersCustomerId, x.ProductsProductId });
+                    table.ForeignKey(
+                        name: "FK_CustomerProduct_Customers_CustomersCustomerId",
+                        column: x => x.CustomersCustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CustomerProduct_Products_ProductsProductId",
+                        column: x => x.ProductsProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -138,11 +161,11 @@ namespace CS1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Name", "Price", "ProductCode", "Registered", "ReleaseDate" },
+                columns: new[] { "ProductId", "Name", "Price", "ProductCode", "ReleaseDate" },
                 values: new object[,]
                 {
-                    { 1, "Tournament Master 1.0", 4.99m, "TRN10", "Kaitlyn Anthoni", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "League Scheduler 1.0", 4.99m, "LEAG10", "", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, "Tournament Master 1.0", 4.99m, "TRN10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "League Scheduler 1.0", 4.99m, "LEAG10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -164,6 +187,11 @@ namespace CS1.Migrations
                     { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "The app won't open properly", 1, 1, "Cant run" },
                     { 3, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "The app won't open properly", 1, 1, "Cant run" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerProduct_ProductsProductId",
+                table: "CustomerProduct",
+                column: "ProductsProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_CountryId",
@@ -189,6 +217,9 @@ namespace CS1.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CustomerProduct");
+
             migrationBuilder.DropTable(
                 name: "Incidents");
 

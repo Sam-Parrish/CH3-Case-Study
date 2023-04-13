@@ -5,6 +5,8 @@ namespace CS_1.Models
 {
 	public class Product
 	{
+		public Product() => Customers = new HashSet<Customer>();
+
 		public int ProductId { get; set; }
 		public string ProductCode { get; set; } = string.Empty;
 
@@ -17,6 +19,7 @@ namespace CS_1.Models
 		[Required(ErrorMessage = "Please enter a release date.")]
 		public DateTime ReleaseDate { get; set; } = DateTime.Now;
 
-		public string? Registered { get; set; } = string.Empty;
+		public ICollection<Customer> Customers { get; set;}
+
 	}
 }

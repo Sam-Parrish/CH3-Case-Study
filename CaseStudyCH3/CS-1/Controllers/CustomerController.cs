@@ -60,7 +60,7 @@ namespace CS_1.Controllers
         {
             ViewBag.Action = "Add ";
             ViewBag.Countries = Context.Countries.OrderBy(c => c.Name).ToList();
-            return View("Edit", new Customer());
+            return View("Edit", new ConfigureCustomers());
         }
 
         public IActionResult Edit(int id)
