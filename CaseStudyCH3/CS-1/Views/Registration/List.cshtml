@@ -6,7 +6,7 @@
 <br />
 <div class="ListDiv">
     <h2>Customer: @Model.Customer.FullName's <br/>Registrations</h2>
-    @if (Model.Products.Count() > 0)
+    @if (Model.Customer.Products.Count() > 0)
     {
         <table class="table table-bordered table-striped" table-striped>
             <thead>
@@ -15,12 +15,12 @@
                     <th></th>
                 </tr>
             </thead>
-            @foreach (var incident in Model.Products )
+            @foreach (var product in Model.Customer.Products )
             {
                 <tr>
-                    <td>@incident.Name</td>
+                    <td>@product.Name</td>
                     <td>
-                        <a asp-action="Delete" asp-controller="Product" asp-route-id="@incident.ProductId" class="btn btn-primary">Delete</a>
+                        <a asp-action="Delete" asp-controller="Product" asp-route-id="@product.ProductId" class="btn btn-primary">Delete</a>
                     </td>
                 </tr>
             }
@@ -28,7 +28,7 @@
     }
     else
     {
-        <p>@Model.Customer.FullName has no open incidents</p>
+        <p>@Model.Customer.FullName is not registered to any products</p>
     }
     <br/>
     <h3>@TempData["message"]</h3>

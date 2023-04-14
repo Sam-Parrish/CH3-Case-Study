@@ -48,7 +48,8 @@ namespace CS_1.Controllers
         public IActionResult List()
         {
             int? id = HttpContext.Session.GetInt32(REGISTRATION_KEY);
-            var customer = Context.Customers.Find(id);
+            var customer = Context.Customers.Include(c => c.Products).Where(c => c.CustomerId == id).FirstOrDefault();
+
             if (customer == null)
             {
                 TempData["message"] = "Customer not found, please select a customer";
@@ -56,14 +57,17 @@ namespace CS_1.Controllers
             }
             else
             {
-                ViewBag.Products = Context.Products.OrderBy(c => c.Name).ToList();
+                ViewBag.Products = Context.Products.OrderBy(c => c.ProductId).ToList();
 
                 var model = new RegistrationViewModel
                 {
                     Customer = customer,
-                    Products = Context.Products
-                    .OrderBy(i => i.Name)
-                    .ToList()
+                    //Products = Context.Customers.Include(c => c.Products).Where
+                    
+                    //Products
+                    //.Include(t => t.Customers.Where(q => q.CustomerId == id))
+                    //.OrderBy(i => i.ProductId)
+                    //.ToList()
                 };
                 return View(model);
             }
@@ -76,27 +80,31 @@ namespace CS_1.Controllers
             var productFind = Context.Products.Find(prodId);
 
             int? custId = HttpContext.Session.GetInt32(REGISTRATION_KEY);
-            var customer = Context.Customers.Find(custId);
+            var customer = Context.Customers.Include(c => c.Products).Where(c => c.CustomerId == custId).FirstOrDefault();
 
             var vm = new RegistrationViewModel();
-            if (prodId == 0)
+
+            if (customer != null && productFind != null)
             {
-                TempData["message"] = "Please select a product.";
-                return RedirectToAction("List", new { id = custId });
-            }
-            else
-            {
-                if (customer.Products.Any(p => p.ProductId == prodId))
+                if (prodId == 0)
                 {
-                    TempData["message"] = "Product already registered";
+                    TempData["message"] = "Please select a product.";
+                    return RedirectToAction("List", new { id = custId });
                 }
                 else
                 {
-                    TempData["message"] = "Customer registered";
-                    customer.Products.Add(productFind);
-                    vm.Customer = customer;
-                    vm.Products = Context.Products.ToList();
-                    Context.SaveChanges();
+                    if (customer.Products.Any(p => p.ProductId == prodId))
+                    {
+                        TempData["message"] = "Product already registered";
+                    }
+                    else
+                    {
+                        TempData["message"] = "Customer registered";
+                        customer.Products.Add(productFind);
+                        vm.Customer = customer;
+                        vm.Products = Context.Products.ToList();
+                        Context.SaveChanges();
+                    }
                 }
             }
             return RedirectToAction("List", new { id = custId });
