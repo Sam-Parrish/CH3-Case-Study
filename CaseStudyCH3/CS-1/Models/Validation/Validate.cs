@@ -1,4 +1,7 @@
-﻿namespace CS_1.Models.Validation
+﻿using CS_1.Models.DataLayer;
+using CS_1.Models.DomainModels;
+
+namespace CS_1.Models.Validation
 {
     public class Validate
     {

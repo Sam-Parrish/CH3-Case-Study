@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using CS_1.Models.DomainModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
-namespace CS_1.Models
+namespace CS_1.Models.ViewModels
 {
     public class RegistrationViewModel
     {

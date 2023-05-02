@@ -1,9 +1,12 @@
-﻿@model Home
+﻿@using Microsoft.AspNetCore.Identity;
+@using CS_1.Models;
+@model Home
 
 @{
     ViewData["Title"] = "SportsPro";
     Layout = "_Layout";
 }
+@inject SignInManager<User> signInManager
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,40 +23,46 @@
             <h2>SportsPro Technical Support</h2>
             <p>Sports managament software for the sports enthusiast</p>
         </div>
-        <h2>Admin</h2>
-        <div class="list-items">
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Product" asp-action="List">Manage Products</a>
+        @if (signInManager.IsSignedIn(User))
+        {
+            @if (User.IsInRole("Admin"))
+            {
+                <h2>Admin</h2>
+                <div class="list-items">
+                    <nav class="navbar navbar-light bg-light">
+                        <div class="container-fluid">
+                            <a class="navbar-brand text-black active" asp-area="" asp-controller="Product" asp-action="List">Manage Products</a>
+                        </div>
+                        <br /><br />
+                        <div class="container-fluid">
+                            <a class="navbar-brand text-black active" asp-area="" asp-controller="Technician" asp-action="List">Manage Technicians</a>
+                        </div>
+                        <br /><br />
+                        <div class="container-fluid">
+                            <a class="navbar-brand text-black active" asp-area="" asp-controller="Customer" asp-action="List">Manage Customers</a>
+                        </div>
+                        <br /><br />
+                        <div class="container-fluid">
+                            <a class="navbar-brand text-black active" asp-area="" asp-controller="Incident" asp-action="List">Manage Incidents</a>
+                        </div>
+                        <br /><br />
+                        <div class="container-fluid">
+                            <a class="navbar-brand text-black active" asp-area="" asp-controller="Registration" asp-action="List">Manage Registrations</a>
+                        </div>
+                        <br /><br />
+                    </nav>
                 </div>
-                <br /><br />
-                <div class="container-fluid">
-                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Technician" asp-action="List">Manage Technicians</a>
+                <br />
+                <h2>Technicians</h2>
+                <div class="list-items">
+                    <nav class="navbar navbar-light bg-light">
+                        <div class="container-fluid">
+                            <a class="navbar-brand text-black active" asp-area="" asp-controller="TechIncident" asp-action="Index">Update Incidents</a>
+                        </div>
+                    </nav>
                 </div>
-                <br /><br />
-                <div class="container-fluid">
-                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Customer" asp-action="List">Manage Customers</a>
-                </div>
-                <br /><br />
-                <div class="container-fluid">
-                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Incident" asp-action="List">Manage Incidents</a>
-                </div>
-                <br /><br />
-                <div class="container-fluid">
-                    <a class="navbar-brand text-black active" asp-area="" asp-controller="Registration" asp-action="List">Manage Registrations</a>
-                </div>
-                <br /><br />
-            </nav>
-        </div>
-        <br />
-        <h2>Technicians</h2>
-        <div class="list-items">
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand text-black active" asp-area="" asp-controller="TechIncident" asp-action="Index">Update Incidents</a>
-                </div>
-            </nav>
-        </div>
+            }
+        }
         <br />
     </div>
 </body>

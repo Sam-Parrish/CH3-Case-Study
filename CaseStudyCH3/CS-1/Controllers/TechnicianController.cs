@@ -1,6 +1,8 @@
-﻿using CS_1.Models;
+﻿using CS_1.Models.DataLayer;
+using CS_1.Models.DomainModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using CS_1.Models;
 using System.Linq;
 
 namespace CS_1.Controllers

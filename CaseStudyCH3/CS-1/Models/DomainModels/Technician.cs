@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-namespace CS_1.Models
+namespace CS_1.Models.DomainModels
 {
     public class Technician
     {

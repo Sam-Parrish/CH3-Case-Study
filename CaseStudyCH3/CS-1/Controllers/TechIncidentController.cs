@@ -1,6 +1,9 @@
-﻿using CS_1.Models;
+﻿using CS_1.Models.DataLayer;
+using CS_1.Models.DomainModels;
+using CS_1.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using CS_1.Models;
 
 namespace CS_1.Controllers
 {

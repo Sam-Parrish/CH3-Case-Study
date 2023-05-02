@@ -1,4 +1,6 @@
-﻿namespace CS_1.Models
+﻿using CS_1.Models.DomainModels;
+
+namespace CS_1.Models.ViewModels
 {
     public class TechIncidentViewModel
     {

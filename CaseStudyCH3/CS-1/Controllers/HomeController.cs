@@ -1,6 +1,7 @@
-﻿using CS_1.Models;
+﻿using CS_1.Models.DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using CS_1.Models;
 
 namespace CS_1.Controllers
 {

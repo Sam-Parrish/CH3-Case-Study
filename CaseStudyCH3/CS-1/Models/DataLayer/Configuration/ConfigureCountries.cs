@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using CS_1.Models.DomainModels;
 
-namespace CS_1.Models
+namespace CS_1.Models.DataLayer.Configuration
 {
     internal class ConfigureCountries : IEntityTypeConfiguration<Country>
     {

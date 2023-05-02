@@ -1,8 +1,10 @@
-﻿using CS_1.Models;
+﻿using CS_1.Models.DataLayer;
+using CS_1.Models.DomainModels;
 using CS_1.Models.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using CS_1.Models;
 
 namespace CS_1.Controllers
 {

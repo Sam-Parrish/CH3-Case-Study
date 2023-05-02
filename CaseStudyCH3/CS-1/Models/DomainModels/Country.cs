@@ -1,4 +1,4 @@
-﻿namespace CS_1.Models
+﻿namespace CS_1.Models.DomainModels
 {
     public class Country
     {

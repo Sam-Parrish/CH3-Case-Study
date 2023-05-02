@@ -1,5 +1,8 @@
 using CS_1.Models;
+using CS_1.Models.DataLayer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using CS_1.Models.DomainModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,13 @@ builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<SportsProContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SportsProContext")));
+
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+}).AddEntityFrameworkStores<SportsProContext>().AddDefaultTokenProviders();
 
 builder.Services.AddRouting(options =>
 {
@@ -34,7 +44,19 @@ app.UseRouting();
 
 app.UseSession();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    await ConfigureIdentity.CreateAdminUserAsync(scope.ServiceProvider);
+}
+
+app.MapAreaControllerRoute(
+    name: "admin",
+    areaName: "Admin",
+    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

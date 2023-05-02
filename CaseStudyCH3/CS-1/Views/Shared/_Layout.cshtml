@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using CS_1.Models;
+
+@{
+    var current = ViewContext.RouteData.Values["area"]?.ToString() ??
+        ViewContext.RouteData.Values["controller"]!.ToString() ?? "";
+}
+@inject SignInManager<User> signInManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -24,23 +33,55 @@
                             <li class="nav-item">
                                 <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Product" ? "text-white active" : "")" asp-area="" asp-controller="Product" asp-action="List">Products</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Tech" ? "text-white active" : "")" asp-area="" asp-controller="Technician" asp-action="List">Technicians</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Customer" ? "text-white active" : "")" asp-area="" asp-controller="Customer" asp-action="List">Customers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Incident" ? "text-white active" : "")" asp-area="" asp-controller="Incident" asp-action="List">Incidents</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Register" ? "text-white active" : "")" asp-area="" asp-controller="Registration" asp-action="Index">Registrations</a>
-                            </li>
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Tech" ? "text-white active" : "")" asp-area="" asp-controller="Technician" asp-action="List">Technicians</a>
+                                </li>
+                            }
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Customer" ? "text-white active" : "")" asp-area="" asp-controller="Customer" asp-action="List">Customers</a>
+                                </li>
+                            }
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Incident" ? "text-white active" : "")" asp-area="" asp-controller="Incident" asp-action="List">Incidents</a>
+                                </li>
+                            }
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-info @(ViewBag.SelectedCategoryName == "Register" ? "text-white active" : "")" asp-area="" asp-controller="Registration" asp-action="Index">Registrations</a>
+                                </li>
+                            }
                         </ul>
                         <div class="aboutPage float-right">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                @if (signInManager.IsSignedIn(User))
+                                {
+                                    <li class="nav-item">
+                                        <form method="post" asp-action="Logout" asp-controller="Account" asp-area="">
+                                            <input type="submit" value="Log Out" class="btn me-3 btn-outline-light" />
+                                            <span class="text-light me-1 fw-bold">Welcome, @User.Identity.Name</span>
+                                        </form>
+                                    </li>
+                                }
+                                else
+                                {
+                                    var action = ViewContext.RouteData.Values["action"]?.ToString();
+
+                                    <li class="nav-item @Nav.Active("Register", action)">
+                                        <a asp-action="Register" asp-controller="Account" asp-area="" class="nav-link btn btn-outline-light text-light">Register</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="Login" asp-controller="Account" asp-area="" class="btn btn-outline-light">Log In</a>
+                                    </li>
+                                }
                                 <li class="nav-item">
-                                    <a class="navbar-brand text-info @(ViewBag.SelectedCategoryName == "About" ? "text-white" : "")" asp-area="" asp-controller="About" asp-action="Page">About</a>
+                                    <a class="navbar-brand ms-3 text-info @(ViewBag.SelectedCategoryName == "About" ? "text-white" : "")" asp-area="" asp-controller="About" asp-action="Page">About</a>
                                 </li>
                             </ul>
                         </div>

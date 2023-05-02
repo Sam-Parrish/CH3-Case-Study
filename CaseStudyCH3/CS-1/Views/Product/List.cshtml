@@ -1,9 +1,12 @@
-﻿@model List<Product>
+﻿@using Microsoft.AspNetCore.Identity;
+@using CS_1.Models;
+@model List<Product>
 
 @{
     ViewData["Title"] = "SportsPro";
     Layout = "_Layout";
 }
+@inject SignInManager<User> signInManager
 <!doctype html>
 <html lang="en">
 <head>
@@ -42,15 +45,25 @@
                     <td>@product.Price.ToString("C2")</td>
                     <td>@product.ReleaseDate</td>
                     <td>
-                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary">Edit</a>
-                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-primary">Delete</a>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary">Edit</a>
+                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-primary">Delete</a>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
-    <div class="mb-2">
-        <a asp-controller="Product" asp-action="Add" class="fw-bold fs-5 ms-2 btn btn-primary">Add Product</a>
-    </div>
+    @if (signInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mb-2">
+                <a asp-controller="Product" asp-action="Add" class="fw-bold fs-5 ms-2 btn btn-primary">Add Product</a>
+            </div>
+        }
+    }
     <br />
 </body>
 </html>

@@ -1,6 +1,9 @@
-﻿using CS_1.Models;
+﻿using CS_1.Models.DataLayer;
+using CS_1.Models.DomainModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using CS_1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CS_1.Controllers
 {
@@ -40,7 +43,7 @@ namespace CS_1.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             ViewBag.Action = "Add ";
@@ -81,7 +84,7 @@ namespace CS_1.Controllers
          }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             ViewBag.Action = "Delete ";

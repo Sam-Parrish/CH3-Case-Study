@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CS_1.Models.DomainModels;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.Xml;
+using CS_1.Models.DataLayer.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CS_1.Models
 {
-    public class SportsProContext : DbContext
+    public class SportsProContext : IdentityDbContext<User>
     {
         public SportsProContext(DbContextOptions<SportsProContext> options) : base(options)
         {
@@ -22,6 +25,8 @@ namespace CS_1.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new ConfigureProducts());
 
             modelBuilder.ApplyConfiguration(new ConfigureTechnicians());

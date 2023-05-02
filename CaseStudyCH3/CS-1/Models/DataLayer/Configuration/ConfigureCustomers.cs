@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CS_1.Models.DomainModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CS_1.Models
+namespace CS_1.Models.DataLayer.Configuration
 {
     internal class ConfigureCustomers : IEntityTypeConfiguration<Customer>
     {

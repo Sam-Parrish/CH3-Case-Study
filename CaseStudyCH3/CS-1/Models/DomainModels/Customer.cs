@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc;
 using CS_1.Models.Validation;
 
-namespace CS_1.Models
+namespace CS_1.Models.DomainModels
 {
     public class Customer
     {
